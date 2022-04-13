@@ -19,7 +19,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body">
-                        <center><h2>SELAMAT DATANG</h2></center>
+                        <center><h2>SELAMAT DATANG <?php echo $this->session->userdata('nama')?></h2></center>
                     </div>
                 </div>
             </div>

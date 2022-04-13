@@ -22,7 +22,7 @@ $session = $this->db->get_where('tbl_user', $where)->row();
                 <ul class="nav navbar-nav">
                     <li class="dropdown messages-menu" align="center">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <div style="font-size: 18px; font-family: arial; color:#FFF;" id="jam"> </div>
+                            <div style="font-size: 12px; font-family: arial; color:#FFF;" id="jam"> </div>
                         </a>
                     </li>
                     <li class="dropdown user user-menu">
