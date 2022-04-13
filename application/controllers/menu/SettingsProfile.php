@@ -39,26 +39,26 @@ class SettingsProfile extends CI_Controller {
 
         if ($image_files) {
             $config['file_name'] = $id_user;
-            $config['allowed_types'] = 'jpg|jpeg|png';
-            $config['max_size']     = 5120;
+            $config['allowed_types'] = 'jpg|png|jpeg';
+            $config['max_size']     = 1024;
             $config['upload_path'] = './assets/images/profile/';
 
             $this->load->library('upload', $config);
             if ($this->upload->do_upload('image')) {
-                $image = $this->upload->data();
+                $gbr = $this->upload->data();
 
                 $config['image_library'] = 'gd2';
-                $config['source_image'] = './assets/images/profile/' . $image['file_name'];
+                $config['source_image'] = './assets/images/profile/'.$gbr['file_name'];
                 $config['create_thumb'] = FALSE;
                 $config['maintain_ratio'] = FALSE;
                 $config['quality'] = '100%';
                 $config['width'] = 512;
                 $config['height'] = 512;
-                $config['new_image'] = './assets/images/profile/' . $image['file_name'];
+                $config['new_image'] = './assets/images/profile/'.$gbr['file_name'];
                 $this->load->library('image_lib', $config);
                 $this->image_lib->resize();
 
-                $image_files = $image['file_name'];
+                $image_files = $gbr['file_name'];
 
                 $where = array(
                     'id_user' => $id_user
@@ -67,7 +67,7 @@ class SettingsProfile extends CI_Controller {
                 $data = array(
                     'nama' => $nama,
                     'email' => $email,
-                    'file_gambar' => "assets/images/profile/" . $image_files
+                    'file_gambar' => "assets/images/profile/".$image_files
                 );
 
                 $query = $this->db->update('tbl_user', $data, $where);
@@ -79,6 +79,7 @@ class SettingsProfile extends CI_Controller {
                 $this->session->set_flashdata('update', 'Profile Berhasil diperbarui!');
                 redirect($_SERVER['HTTP_REFERER']);
             } else {
+                // $this->session->set_flashdata('error', $this->upload->display_errors());
                 $this->session->set_flashdata('error', 'Format Gambar yang Anda unggah tidak diperbolehkan.');
                 redirect($_SERVER['HTTP_REFERER']);
             }
