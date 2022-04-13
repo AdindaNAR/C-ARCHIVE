@@ -9,8 +9,8 @@ $session = $this->db->get_where('tbl_user', $where)->row();
 <div class="wrapper">
     <header class="main-header">
         <a href="" class="logo">
-            <span class="logo-mini"><b>SS</b></span>
-            <span class="logo-lg"><b>Stock System</b></span>
+            <span class="logo-mini"><b>CA</b></span>
+            <span class="logo-lg"><b>C-Archive</b></span>
         </a>
 
         <nav class="navbar navbar-static-top">
@@ -45,7 +45,7 @@ $session = $this->db->get_where('tbl_user', $where)->row();
                                     <a href="<?php echo base_url('menu/SettingsProfile') ?>" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="<?php echo base_url('Auth/logout') ?>" class="btn btn-default btn-flat logout">Sign out</a>
+                                    <a href="<?php echo base_url('Auth/logout') ?>" class="btn btn-default btn-flat logout">Log out</a>
                                 </div>
                             </li>
                         </ul>

@@ -1,5 +1,5 @@
     <footer class="main-footer">
-        <strong>Copyright <b>C-Archive<b/> &copy; 2022 - Develop by KKN LP3I Tasikmalaya</a>.</strong>
+        <strong>Copyright <b>C-Archive<b/> &copy; 2022 - Develop by KKNTM Politeknik LP3I Tasikmalaya</a>.</strong>
     </footer>
 
     <!-- jQuery 3 -->
