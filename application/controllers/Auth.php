@@ -71,13 +71,13 @@ class Auth extends CI_Controller
 
                     // Check what the User Role is .....
                     if ($login_user->id_role == 1) { // SUPERADMIN APP
-                        redirect('main/Admin');
+                        redirect('main/Dashboard');
                     } elseif ($login_user->id_role == 2) { // MASTER ADMIN DESA
-                        redirect('main/AdminOffice');
+                        redirect('main/Dashboard');
                     } elseif ($login_user->id_role == 3) { // PENGAWAS
-                        redirect('main/AdminOffice');
+                        redirect('main/Dashboard');
                     } else { // OPERATOR DESA
-                        redirect('main/AdminToko');
+                        redirect('main/Dashboard');
                     }
                 } else {
                     // Check if the User Login attempts are more than 3
@@ -149,7 +149,7 @@ class Auth extends CI_Controller
         }
         $tA = microtime(true);
         $hsl = round((($tA - $tB) * 1000), 0) . " Ms";
-        if ($hsl > 14) {
+        if ($hsl > 100) {
             $ping = $hsl;
             $ic   = '<i class="fa fa-wifi" style="color:red;"></i>';
         } else {
