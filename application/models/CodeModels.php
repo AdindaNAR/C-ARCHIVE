@@ -180,14 +180,35 @@ class CodeModels extends CI_Model
         return $kodejadi;
     }
 
-    function create_code_brand(){
+    // function create_code_brand(){
+    //     $date = date('Ymd');
+    //     $cari = "BD".$date;
+    //     $this->db->select('RIGHT(tbl_brand.id_brand,5) as kode', FALSE); // membaca 5 karakter dari kanan
+    //     $this->db->like('id_brand', $cari);
+    //     $this->db->order_by('id_brand', 'DESC');
+    //     $this->db->limit(1);
+    //     $query = $this->db->get('tbl_brand'); // cek dulu apakah ada sudah ada kode di tabel.    
+    //     if ($query->num_rows() <> 0) { // jika kode ternyata sudah ada. 
+
+    //         $data = $query->row();
+    //         $kode = intval($data->kode) + 1;
+    //     } else { // jika kode belum ada 
+    //         $kode = 1;
+    //     }
+    //     $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 5 menunjukkan jumlah digit angka 0
+       
+    //     $kodejadi = "BD" . $date .'-'. $kodemax; 
+    //     return $kodejadi;
+    // }
+
+    function create_code_wajib_pajak(){
         $date = date('Ymd');
-        $cari = "BD".$date;
-        $this->db->select('RIGHT(tbl_brand.id_brand,5) as kode', FALSE); // membaca 5 karakter dari kanan
-        $this->db->like('id_brand', $cari);
-        $this->db->order_by('id_brand', 'DESC');
+        $cari = "WP".$date;
+        $this->db->select('RIGHT(tbl_wajib_pajak.id_wajib_pajak,8) as kode', FALSE); // membaca 8 karakter dari kanan
+        $this->db->like('id_wajib_pajak', $cari);
+        $this->db->order_by('id_wajib_pajak', 'DESC');
         $this->db->limit(1);
-        $query = $this->db->get('tbl_brand'); // cek dulu apakah ada sudah ada kode di tabel.    
+        $query = $this->db->get('tbl_wajib_pajak'); // cek dulu apakah ada sudah ada kode di tabel.    
         if ($query->num_rows() <> 0) { // jika kode ternyata sudah ada. 
 
             $data = $query->row();
@@ -195,9 +216,9 @@ class CodeModels extends CI_Model
         } else { // jika kode belum ada 
             $kode = 1;
         }
-        $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 5 menunjukkan jumlah digit angka 0
+        $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 8 menunjukkan jumlah digit angka 0
        
-        $kodejadi = "BD" . $date .'-'. $kodemax; 
+        $kodejadi = "WP" . $date .'-'. $kodemax; 
         return $kodejadi;
     }
     
