@@ -221,6 +221,27 @@ class CodeModels extends CI_Model
         $kodejadi = "WP" . $date .'-'. $kodemax; 
         return $kodejadi;
     }
+
+    function create_code_pajak(){
+        $date = date('Ymd');
+        $cari = "PJK".$date;
+        $this->db->select('RIGHT(tbl_pajak.id_pajak,8) as kode', FALSE); // membaca 8 karakter dari kanan
+        $this->db->like('id_pajak', $cari);
+        $this->db->order_by('id_pajak', 'DESC');
+        $this->db->limit(1);
+        $query = $this->db->get('tbl_pajak'); // cek dulu apakah ada sudah ada kode di tabel.    
+        if ($query->num_rows() <> 0) { // jika kode ternyata sudah ada. 
+
+            $data = $query->row();
+            $kode = intval($data->kode) + 1;
+        } else { // jika kode belum ada 
+            $kode = 1;
+        }
+        $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT); // angka 8 menunjukkan jumlah digit angka 0
+       
+        $kodejadi = "PJK" . $date .'-'. $kodemax; 
+        return $kodejadi;
+    }
     
     function create_code_harga(){
         $date = date('Ymd');

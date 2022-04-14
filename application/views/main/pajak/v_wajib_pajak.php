@@ -33,9 +33,11 @@
                 <?php endif ?>
 
                 <div class="box box-primary">
-                    <div class="box-header">
-                        <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
-                    </div>
+                    <?php if ($this->session->userdata('id_role') != 3): ?>
+                        <div class="box-header">
+                            <a href="" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#create"><i class="fa fa-plus"></i>&nbsp; Tambah</a>
+                        </div>
+                    <?php endif ?>
 
                     <div class="box-body">
                         <div class="table-responsive">
@@ -61,7 +63,7 @@
                                                 <th style="text-align: center;"><?php echo $r->nama_wajib_pajak; ?></th>
                                                 <th style="text-align: center;"><?php echo $r->alamat; ?></th>
                                                 <th style="text-align: center;" width="250px">
-                                                    <a href="<?php echo base_url('menu/Brand/delete/' . $r->id_wajib_pajak); ?>" class="btn btn-sm btn-info delete"><i class="fa fa-search"></i>&nbsp; Detail</a>
+                                                    <a href="<?php echo base_url('main/Pajak/rekap_pajak/' . $r->id_wajib_pajak); ?>" class="btn btn-sm btn-info"><i class="fa fa-search"></i>&nbsp; Detail</a>
 
                                                     <?php if ($this->session->userdata('id_role') != 3): ?>
 	                                                    <a href="" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#update<?php echo $r->id_wajib_pajak; ?>"><i class="fa fa-edit"></i>&nbsp; Update</a>
