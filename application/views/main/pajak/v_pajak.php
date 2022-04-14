@@ -169,8 +169,8 @@
                 <div class="modal-body">
                 	<div class="container-fluid">
     					<div class="row">
-		                    <input type="text" id="id_pajak" name="id_pajak" value="<?php echo $code ?>">
-		                    <input type="text" id="id_wajib_pajak" name="id_wajib_pajak" value="<?php echo $this->uri->segment(4); ?>">
+		                    <input type="hidden" id="id_pajak" name="id_pajak" value="<?php echo $code ?>">
+		                    <input type="hidden" id="id_wajib_pajak" name="id_wajib_pajak" value="<?php echo $this->uri->segment(4); ?>">
 		                    
 	                   		<center><p><b>BUMI</b></p></center>	
 		                   	<div class="col-md-6"> 
@@ -300,8 +300,8 @@
                     <div class="modal-body">
 	                	<div class="container-fluid">
 	    					<div class="row">
-			                    <input type="text" id="id_pajak" name="id_pajak" value="<?php echo $r->id_pajak ?>">
-			                    <input type="text" id="id_wajib_pajak" name="id_wajib_pajak" value="<?php echo $r->id_wajib_pajak ?>">
+			                    <input type="hidden" id="id_pajak" name="id_pajak" value="<?php echo $r->id_pajak ?>">
+			                    <input type="hidden" id="id_wajib_pajak" name="id_wajib_pajak" value="<?php echo $r->id_wajib_pajak ?>">
 			                    
 		                   		<center><p><b>BUMI</b></p></center>	
 			                   	<div class="col-md-6"> 
