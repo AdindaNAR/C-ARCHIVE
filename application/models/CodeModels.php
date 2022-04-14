@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class CodeModels extends CI_Model
 {
     function create_code_user(){
-        $this->db->select('RIGHT(tbl_user.id_user,5) as kode', FALSE);
+        $this->db->select('RIGHT(tbl_user.id_user,8) as kode', FALSE);
         $this->db->order_by('id_user', 'DESC');
         $this->db->limit(1);
         $query = $this->db->get('tbl_user');   
@@ -15,7 +15,7 @@ class CodeModels extends CI_Model
         } else {
             $kode = 1;
         }
-        $kodemax = str_pad($kode, 5, "0", STR_PAD_LEFT);
+        $kodemax = str_pad($kode, 8, "0", STR_PAD_LEFT);
         $kodejadi = "P" . $kodemax;
         return $kodejadi;
     }

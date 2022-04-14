@@ -5,12 +5,11 @@
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
-            List Pengguna
+            <?php echo $title;?>
         </h1>
         <ol class="breadcrumb">
             <li><a href="<?php echo base_url('main/Admin'); ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li class="">Management Data</li>
-            <li class="active">Pengguna</li>
+            <li class="active">Management Pengguna</li>
         </ol>
     </section>
 
@@ -55,7 +54,6 @@
                                             <th style="text-align: center;">Nama Pengguna</th>
                                             <th style="text-align: center;">Email</th>
                                             <th style="text-align: center;">Role</th>
-                                            <th style="text-align: center;">Toko</th>
                                             <th style="text-align: center;">Status</th>
                                             <th style="text-align: center;">Opsi</th>
                                         </tr>
@@ -63,7 +61,7 @@
                                     <tbody>
                                         <?php
                                         $no = 1;
-                                        foreach ($user as $r) :
+                                        foreach ($tbl_user as $r) :
                                         ?>
                                             <tr>
                                                 <th style="text-align: center;" width="50px"><?php echo $no++; ?></th>
@@ -73,7 +71,6 @@
                                                 <th style="text-align: center;"><?php echo $r->nama; ?></th>
                                                 <th style="text-align: center;"><?php echo $r->email; ?></th>
                                                 <th style="text-align: center;"><?php echo $r->name_role; ?></th>
-                                                <th style="text-align: center;"><?php echo $r->nama_toko; ?></th>
                                                 <th style="text-align: center;">
                                                     <?php if ($r->status_active == '1') : ?>
                                                         <span class="label label-success">Active</span>
@@ -82,7 +79,7 @@
                                                     <?php endif ?>
                                                 </th>
                                                 <th style="text-align: center;" width="350px">
-                                                    <?php if ($r->id_role == '1') : ?>
+                                                    <?php if ($r->id_role == '1' || $r->id_role == '2') : ?>
                                                         -
                                                     <?php else : ?>
                                                         <?php if ($r->status_active == '1') : ?>
@@ -120,7 +117,10 @@
                     <h3 class="modal-title font-weight-bold">Tambah <?php echo $title ?></h3>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" id="id_user" name="id_user" value="<?php echo $code ?>">
+                    <div class="form-group">
+                        <label class="control-label">ID Pengguna</label>
+                        <input type="text" id="id_user" name="id_user" class="form-control" value="<?php echo $code; ?>" readonly>
+                    </div>
                     <div class="form-group">
                         <label for="nama" class="col-form-label">Nama Pengguna</label>
                         <input type="text" id="nama" name="nama" class="form-control" placeholder="Example : Lexianus Razoric" required>
@@ -137,19 +137,6 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="form-group" id="listToko">
-                        <label class="control-label">Toko</label>
-                        <select id="id_toko" name="id_toko" class="form-control">
-                            <?php foreach ($toko as $_toko) : ?>
-                                <option value="<?php echo $_toko->id_toko; ?>"><?php echo $_toko->nama_toko; ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                    </div>
-                    <!-- <div class="form-group">
-                        <label class="control-label">Foto Profile</label>
-                        <!-- <input type="file" id="image" name="image" class="form-control" required> -->
-                    <!-- <input type="file" id="image" name="image" class="dropify" data-height="150" required> -->
-                    <!-- </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -162,7 +149,7 @@
 <!-- End of Modal Create -->
 
 <!-- Modal Update -->
-<?php foreach ($user as $r) : ?>
+<?php foreach ($tbl_user as $r) : ?>
     <div class="modal fade" id="update<?php echo $r->id_user; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <form method="post" action="<?php echo base_url('menu/User/update'); ?>">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -196,18 +183,6 @@
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Nama Toko</label>
-                            <select id="id_toko" name="id_toko" class="form-control">
-                                <?php foreach ($toko as $_toko) : ?>
-                                    <?php if ($_toko->id_toko == $r->id_toko) : ?>
-                                        <option value="<?php echo $_toko->id_toko ?>" selected><?php echo $_toko->nama_toko; ?></option>
-                                    <?php else : ?>
-                                        <option value="<?php echo $_toko->id_toko ?>"><?php echo $_toko->nama_toko; ?></option>
-                                    <?php endif ?>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -222,7 +197,7 @@
 <!-- End of Modal Update -->
 
 <!-- Modal Update Password -->
-<?php foreach ($user as $r) : ?>
+<?php foreach ($tbl_user as $r) : ?>
     <div class="modal fade" id="update_password<?php echo $r->id_user; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <form method="post" action="<?php echo base_url('menu/User/update_password'); ?>">
             <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -233,7 +208,7 @@
                     <div class="modal-body">
                         <input type="hidden" id="id_user" name="id_user" value="<?php echo $r->id_user; ?>">
                         <div class="form-group">
-                            <label class="control-label">Password</label>
+                            <label class="control-label">New Password</label>
                             <input type="password" id="new_password" name="new_password" class="form-control" required>
                         </div>
 

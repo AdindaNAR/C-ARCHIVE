@@ -15,16 +15,16 @@ class User extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Manajemen Pengguna';
+        $data['title'] = 'Manajemen User';
         $data['code'] = $this->CodeModels->create_code_user();
 
-        $where_user = array('tbl_user.data_status' => '1');
-        $data['user'] = $this->DataModels->get_where_user($where_user, 'tbl_user');
+        $where_user = array('tbl_user.data_status' => '1', 'tbl_user.id_role !=' => '1');
+        $data['tbl_user'] = $this->DataModels->get_where_user($where_user, 'tbl_user');
 
         $data['role'] = $this->DataModels->get_where_role('tbl_role');
 
-        $where = array('data_status' => '1');
-        $data['toko'] = $this->DataModels->get_where_table($where, 'tbl_toko');
+        // $where = array('data_status' => '1');
+        // $data['tbl_user'] = $this->DataModels->get_where_table($where, 'tbl_user');
 
         $this->load->view('menu/user/v_user', $data);
     }
@@ -33,12 +33,6 @@ class User extends CI_Controller
     {
         $id_user = $this->input->post('id_user');
         $id_role = $this->input->post('id_role');
-
-        if ($id_role == "2") {
-            $id_toko = Null;
-        } else {
-            $id_toko = $this->input->post('id_toko');
-        }
 
         $nama = htmlspecialchars($this->input->post('nama'));
         $email = htmlspecialchars($this->input->post('email'));
@@ -75,7 +69,6 @@ class User extends CI_Controller
             $data = array(
                 'id_user' => $id_user,
                 'id_role' => $id_role,
-                'id_toko' => $id_toko,
                 'nama' => $nama,
                 'email' => $email,
                 'password' => $password,
@@ -103,12 +96,6 @@ class User extends CI_Controller
         $id_user = $this->input->post('id_user');
         $id_role = $this->input->post('id_role');
 
-        if ($id_role == "2") {
-            $id_toko = Null;
-        } else {
-            $id_toko = $this->input->post('id_toko');
-        }
-
         $nama = htmlspecialchars($this->input->post('nama'));
         $email = htmlspecialchars($this->input->post('email'));
 
@@ -118,7 +105,6 @@ class User extends CI_Controller
 
         $data = array(
             'id_role' => $id_role,
-            'id_toko' => $id_toko,
             'nama' => $nama,
             'email' => $email,
         );

@@ -262,9 +262,8 @@ class DataModels extends CI_Model
 
     function get_where_user($where, $table)
     {
-        $this->db->select('tbl_user.*, tbl_role.*, tbl_toko.*');
+        $this->db->select('tbl_user.*, tbl_role.*');
         $this->db->join('tbl_role', 'tbl_user.id_role = tbl_role.id_role');
-        $this->db->join('tbl_toko', 'tbl_user.id_toko = tbl_toko.id_toko', 'LEFT');
         $this->db->order_by('tbl_user.id_role', 'ASC');
 
         $query = $this->db->get_where($table, $where);
@@ -273,7 +272,7 @@ class DataModels extends CI_Model
 
     function get_where_role()
     {
-        $SQL = "SELECT * FROM tbl_role WHERE data_status='1' AND id_role!='1'";
+        $SQL = "SELECT * FROM tbl_role WHERE data_status='1' AND id_role!='1' AND id_role!='2'";
         return $this->db->query($SQL)->result();
     }
 
